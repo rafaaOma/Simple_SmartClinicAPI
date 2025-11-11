@@ -1,0 +1,8 @@
+GET http://localhost:5034/api/users
+### Request Headers
+POST http://localhost:5034/api/users 
+### Request Headers
+GET http://localhost:5034/api/appointment
+###
+GET http://localhost:5034/api/medicalRecords
+
