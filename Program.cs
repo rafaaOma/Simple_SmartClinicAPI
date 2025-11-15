@@ -7,6 +7,7 @@ builder.Services.AddControllers();// Add services for controllers
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>(); // Register UserService //---
+builder.Services.AddSingleton<IAppointmentService, AppointmentService>(); // Register AppointmentService //---
 var app = builder.Build();
 app.MapControllers();   // Map attribute routes
 // Configure the HTTP request pipeline.

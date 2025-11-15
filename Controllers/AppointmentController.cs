@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SmartClinicAPI.Models;
 
 namespace SmartClinicAPI.Controllers
 {
@@ -6,24 +7,34 @@ namespace SmartClinicAPI.Controllers
     [ApiController]
     public class AppointmentController : ControllerBase
     {
+        private readonly IAppointmentService _appointmentService;
+          public AppointmentController(IAppointmentService appointmentService)
+        {
+        _appointmentService = appointmentService;
+        }
         [HttpGet]
         public IActionResult GetAllAppointments()
         {
-            return Ok("Message");
+            var appointments = _appointmentService.GetAllAppointments();
+            return Ok(appointments);    
         }
         [HttpPost]
-        public IActionResult CreateAppointment([FromBody] object appointment)
+        public IActionResult CreateAppointment([FromBody] Models.Appointment appointment)
         {
-            return Ok("Message");
+            _appointmentService.CreateAppointment(appointment);
+            
+            return CreatedAtAction(nameof(GetAllAppointments), appointment);//------
         }
         [HttpPut("{id}")]
         public IActionResult UpdateAppointment(int id, [FromBody] object appointment)
         {
+            _appointmentService.UpdateAppointment(id, (Models.Appointment)appointment);
             return NoContent();
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteAppointment(int id)
         {
+            _appointmentService.DeleteAppointment(id);
             return NoContent();
         }
     }
