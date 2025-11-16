@@ -5,4 +5,35 @@ POST http://localhost:5034/api/users
 GET http://localhost:5034/api/appointment
 ###
 GET http://localhost:5034/api/medicalRecords
+###
+POST http://localhost:5034/api/appointment
+Content-Type: application/json
 
+{
+    "appointmentId": 3,
+    "id":114,
+    "appointmentDate": "2024-07-01T10:00:00",
+    "description": "General Checkup"
+}
+###
+PUT http://localhost:5034/api/appointment/3
+Content-Type: application/json  
+
+{
+    "appointmentDate": "2024-07-02T11:00:00",
+    "description": "Updated Checkup"
+}
+###
+GET http://localhost:5034/api/medicalRecords
+
+###
+POST http://localhost:5034/api/medicalRecords
+Content-Type: application/json
+
+{
+    "recordId": 2,
+    "patientId": 115,
+    "visitDate": "2024-06-20T14:00:00",
+    "diagnosis": "Allergy",
+    "treatment": "Antihistamines"
+}

@@ -21,7 +21,7 @@ public class AppointmentService : IAppointmentService
         var existingAppointment = _appointment.FirstOrDefault(a => a.AppointmentId == id);//----firstordefault
         if (existingAppointment != null)
         {
-            existingAppointment.AppointmentId = appointment.AppointmentId;
+            
             existingAppointment.AppointmentDate = appointment.AppointmentDate;
             existingAppointment.Description = appointment.Description;
         }

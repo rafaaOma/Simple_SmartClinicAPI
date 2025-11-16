@@ -8,6 +8,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>(); // Register UserService //---
 builder.Services.AddSingleton<IAppointmentService, AppointmentService>(); // Register AppointmentService //---
+builder.Services.AddSingleton<IMedicalRecourdsService, MedicalRecourdsService>(); // Register MedicalRecourdsService //---
+
 var app = builder.Build();
 app.MapControllers();   // Map attribute routes
 // Configure the HTTP request pipeline.

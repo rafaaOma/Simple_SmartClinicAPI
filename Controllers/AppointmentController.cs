@@ -22,13 +22,12 @@ namespace SmartClinicAPI.Controllers
         public IActionResult CreateAppointment([FromBody] Models.Appointment appointment)
         {
             _appointmentService.CreateAppointment(appointment);
-            
-            return CreatedAtAction(nameof(GetAllAppointments), appointment);//------
+            return CreatedAtAction(nameof(GetAllAppointments), new { id = appointment.AppointmentId }, appointment);//------
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateAppointment(int id, [FromBody] object appointment)
+        public IActionResult UpdateAppointment(int id, [FromBody] Appointment appointment)
         {
-            _appointmentService.UpdateAppointment(id, (Models.Appointment)appointment);
+            _appointmentService.UpdateAppointment(id, appointment);
             return NoContent();
         }
         [HttpDelete("{id}")]
