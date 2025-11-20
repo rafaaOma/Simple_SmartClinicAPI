@@ -1,5 +1,5 @@
 using SmartClinicAPI.Models;
-public interface IUserService //----
+public interface IUserService //an interface for user service
 {
     List<User> GetAllUsers();
     User? GetUserById(int id);

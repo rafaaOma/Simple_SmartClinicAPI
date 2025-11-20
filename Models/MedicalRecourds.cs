@@ -1,5 +1,5 @@
 namespace SmartClinicAPI.Models{
-    public class MedicalRecourds
+    public class MedicalRecourds //class for medical records
     {
         public int RecordId { get; set; }
         public int PatientId { get; set; }

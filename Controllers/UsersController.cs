@@ -9,21 +9,21 @@ namespace SmartClinicAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserService _userService; //user service dependency
 
-    public UsersController(IUserService userService)
+    public UsersController(IUserService userService) //constructor to initialaize user service dependency
     {
       _userService = userService;
     }
         [HttpGet]
-        public IActionResult GetAllUsers()
+        public IActionResult GetAllUsers() //get all users
         {
             var users = _userService.GetAllUsers();
             return Ok(users);
         }
-        //return a single user by ID
-        [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
+        
+        [HttpGet("{id}")] 
+        public IActionResult GetUserById(int id) //get user by id
         {
             var user = _userService.GetUserById(id);
             if (user == null)
@@ -33,13 +33,13 @@ namespace SmartClinicAPI.Controllers
             return Ok(user);
         }
         [HttpPost]
-        public IActionResult CreateUser([FromBody] User user)
+        public IActionResult CreateUser([FromBody] User user) //post new user
         {
             _userService.AddUser(user);
             return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteUser(int id) //deletd user by id
         {
             var userDeleted = _userService.DeleteUser(id);
             if (!userDeleted)
