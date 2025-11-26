@@ -6,13 +6,17 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();// Add services for controllers
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IUserService, UserService>(); // Register UserService //---
-builder.Services.AddSingleton<IAppointmentService, AppointmentService>(); // Register AppointmentService //---
-builder.Services.AddSingleton<IMedicalRecourdsService, MedicalRecourdsService>(); // Register MedicalRecourdsService //---
+builder.Services.AddScoped<IUserService, UserService>(); // Register UserService 
+builder.Services.AddSingleton<IAppointmentService, AppointmentService>(); // Register AppointmentService
+builder.Services.AddSingleton<IMedicalRecourdsService, MedicalRecourdsService>(); // Register MedicalRecourdsService 
 
 var app = builder.Build();
+//add middlewares
+app.UseMiddleware<SmartClinicAPI.Middleware.ExceptionHandlingMiddleware>();
+app.UseMiddleware<SmartClinicAPI.Middleware.RequestLoggingMiddleware>();
+
 app.MapControllers();   // Map attribute routes
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -40,6 +44,7 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
 
 app.Run();
 

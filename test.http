@@ -10,7 +10,7 @@ POST http://localhost:5034/api/appointment
 Content-Type: application/json
 
 {
-    "appointmentId": 3,
+    "appointmentId":5 ,
     "id":114,
     "appointmentDate": "2024-07-01T10:00:00",
     "description": "General Checkup"
